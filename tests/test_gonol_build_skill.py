@@ -9,7 +9,7 @@ from frontmatter import frontmatter_for
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "gonol-build" / "SKILL.md"
 ADAPTER = ROOT / "skills" / "gonol-build" / "SKILL.md"
-WITNESS = ROOT / "tools" / "check_gonol_authority.py"
+WITNESS = ROOT / "tools" / "check_gonol_authority.sh"
 
 
 class GonolBuildSkillTest(unittest.TestCase):
@@ -73,7 +73,7 @@ class GonolBuildSkillTest(unittest.TestCase):
 
     def test_local_authority_gate_is_named(self) -> None:
         self.assertTrue(WITNESS.is_file())
-        self.assertIn("python tools/check_gonol_authority.py", self.text)
+        self.assertIn("bash tools/check_gonol_authority.sh", self.text)
 
     def test_completion_preserves_replay_boundary(self) -> None:
         for phrase in (
