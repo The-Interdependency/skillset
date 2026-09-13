@@ -21,35 +21,39 @@ Stack = active language-gonol construction research
 EDCM  = measurement/evaluation only
 ```
 
-## Canonical `ai` launcher
+## Canonical `ai.sh` launcher
 
-`tools/ai.sh` is the canonical VM coding-agent launcher. It owns the `a0` tmux
-session layout, real pane/process status, restart, `remain-on-exit`, and
-persistent pane logs under `~/.local/state/a0/logs`.
+`tools/ai.sh` is the canonical Termux-side launcher for the coding-agent CLIs on
+the `a0` VM. It uses the SSH host alias `a0` and owns the remote tmux session
+layout (`0:shell`, `1:grok`, `2:codex`, `3:deepcode`), real pane/process status,
+explicit restart, `remain-on-exit`, and persistent VM logs under
+`~/.local/state/a0/logs`.
 
-Install the stable `ai` command into the user PATH:
+Install the stable `ai.sh` command into the caller PATH:
 
 ```bash
 bash tools/install_ai.sh
 ```
 
-The installer creates `~/.local/bin/ai` as a wrapper pointing back to the
-canonical `tools/ai.sh`; it does not copy a second implementation. If
-`~/.local/bin` is absent from PATH it adds one idempotent login-shell line to
-`~/.profile`.
+On Termux the installer symlinks the canonical source to `$PREFIX/bin/ai.sh`,
+which is already on PATH. Elsewhere it uses `~/.local/bin/ai.sh` and adds one
+idempotent login-shell PATH line only when required. No second launcher
+implementation is copied.
 
 Examples:
 
 ```bash
-ai
-ai status
-ai restart deepcode
-ai logs deepcode
-ai codex
+ai.sh
+ai.sh status
+ai.sh restart deepcode
+ai.sh logs deepcode
+ai.sh codex
 ```
 
-Provider credentials remain the responsibility of the installed provider CLIs
-and VM environment. The launcher does not read, print, or become a key vault.
+Provider credentials remain the responsibility of the VM/provider CLIs.
+`ai.sh keys` only copies already-present VM login-environment values into the
+remote tmux environment so restarted CLIs can see them; it prints only
+`present`/`missing` and never stores or displays key values.
 
 ## Drift checker
 
