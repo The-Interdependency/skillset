@@ -26,7 +26,7 @@ EDCM      = measurement and evaluation of constructed outputs
 skill-lib = construction/replay discipline
 ```
 
-Repository placement does not transfer authority. A Stack workspace may construct English, Python, French, TypeScript, or another domain from UCNS gonol objects without thereby owning UCNS geometry. EDCM may measure a completed construction without defining that construction.
+Repository placement does not transfer authority. A Stack workspace may construct English, Python, French, TypeScript, or another domain from UCNS gonol objects without thereby owning UCNS geometry. Language workspaces consume UCNS construction authority; they do not redefine it. EDCM may measure a completed construction without defining that construction.
 
 Historical EDCM constructor names and sealed artifacts remain valid historical identities for replay. They do not restore active construction authority to EDCM.
 
