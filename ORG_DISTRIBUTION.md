@@ -38,7 +38,7 @@ Propagation PRs should cite this repository and the source commit SHA.
 * `plain-lens/` — plain-language, multi-lens companion views of dense canonical text
 * `thought-lens/` — raw-thought to audience-legible translation with claim-kernel fidelity and back-translation checks
 * `meta/` — consultation router for current METAPAT authority; no frozen doctrine copy
-* `gonol-build/` — UCNS geometry / EDCM text construction, declared scale options, closure, atomic participation, protocol-required replay, and honest continuation boundaries
+* `gonol-build/` — UCNS gonol objects/constructors/geometry + Stack language-construction research, closure, atomic participation, replay, and honest continuation boundaries; EDCM is measurement/evaluation only
 * `ucns-option-selection/` — fail-closed scoped UCNS option comparison, selection, ratification, non-transfer, rollback, and decision receipts
 * `epac-selection-display/` — exact provisional EPAC target and representation selection with receipt-backed display, status preservation, and a read-only WebMCP handoff boundary
 * `the-interdependency/` — org-wide workflow protocol and usage-guidance doctrine for The Interdependency projects

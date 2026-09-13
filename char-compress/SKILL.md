@@ -1,6 +1,6 @@
 ---
 name: char-compress
-description: Character-based context compression for agent handoff and skill writing, owned as a skill-lib procedure rather than current UCNS mathematics. Use this when compressing a long thread, document, repo audit, canon handoff, or agent working-memory state; when a context window is filling and operative facts must survive; when writing a SKILL.md that should be flesh-dense and bone-sparse; or when checking whether a compression deleted negation, order, quantifier, operator, named object, value, decision, or unresolved hmmm. Historical bone/flesh and text-stack terminology is local compression notation, not a UCNS theorem/status transfer, EDCM constructor, or edcmbone metric implementation.
+description: Character-based context compression for agent handoff and skill writing, owned as a skill-lib procedure rather than current UCNS mathematics. Use this when compressing a long thread, document, repo audit, canon handoff, or agent working-memory state; when a context window is filling and operative facts must survive; when writing a SKILL.md that should be flesh-dense and bone-sparse; or when checking whether a compression deleted negation, order, quantifier, operator, named object, value, decision, or unresolved hmmm. Historical bone/flesh and text-stack terminology is local compression notation, not a UCNS theorem/status transfer, active language-construction authority, or edcmbone metric implementation.
 ---
 
 # char-compress — bone/flesh compression for agent context
@@ -42,14 +42,16 @@ this repo remains the canonical source.
 
 ### Relation to `ucns`
 
-`ucns` owns current geometry, not lexical classes or this compression procedure.
-EDCM owns text-domain gonol construction. Neither repository's authority is
-acquired by calling a text inventory a carrier or a separator a twist.
+`ucns` owns current gonol objects, constructors, and geometry, not lexical
+classes or this compression procedure. Active language-gonol construction is
+owned by the applicable research workspace in `The-Interdependency/stack`;
+EDCM owns measurement/evaluation only. None of those authorities is acquired
+by calling a text inventory a carrier or a separator a twist.
 
 The vocabulary below records this skill's historical model only. An exact
 historical UCNS source establishing that model is unresolved (`hmmm`); no current
 UCNS mathematical derivation is claimed. Resolve an exact producer contract
-before using any actual UCNS operation or EDCM constructor.
+before using any actual UCNS operation or active Stack construction contract.
 
 Allowed relation:
 
@@ -89,8 +91,9 @@ Use edcmbone doctrine as a guardrail:
 ## Optional local text-stack notation
 
 The following is an optional notation for text grouping, not a UCNS construction
-law or a mandatory EDCM scale ladder. Here `tensor`, `twist`, `gonol`, `carrier`,
-`spiral`, and `chirality` are historical local labels, not constructed geometry.
+law or a mandatory Stack language-construction ladder. Here `tensor`, `twist`,
+`gonol`, `carrier`, `spiral`, and `chirality` are historical local labels, not
+constructed geometry.
 
 ```text
 tensors = characters
@@ -267,7 +270,8 @@ separator/boundary data that changes attachment or closure must be preserved
 
 2. **Declare the text grouping.** Use source-appropriate character, word,
    sentence, or other boundaries. The optional local text-stack notation above
-   is not required and does not construct UCNS geometry or EDCM gonols.
+   is not required and does not authorize UCNS geometry or active Stack
+   construction.
 
 3. **Run a suppression sort.** Identify first-occurrence inventory,
    recurrence data required for reconstruction, units that survive as

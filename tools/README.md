@@ -3,8 +3,57 @@
 Small pure-stdlib helpers for maintaining this content repository.
 
 These tools do not introduce an external build system. They are local editorial
-checks, copy helpers, and generated-file drift gates. The small `llms/` package
-exists only to expose `python -m llms.build`.
+checks, copy helpers, launchers, installers, and generated-file drift gates. The
+small `llms/` package exists only to expose `python -m llms.build`.
+
+## Gonol authority gate
+
+```bash
+bash tools/check_gonol_authority.sh
+```
+
+Fails if active skill-lib doctrine drifts back to assigning gonol/text
+construction authority to EDCM. The active split is:
+
+```text
+UCNS  = gonol objects, constructors, geometry
+Stack = active language-gonol construction research
+EDCM  = measurement/evaluation only
+```
+
+## Canonical `ai.sh` launcher
+
+`tools/ai.sh` is the canonical Termux-side launcher for the coding-agent CLIs on
+the `a0` VM. It uses the SSH host alias `a0` and owns the remote tmux session
+layout (`0:shell`, `1:grok`, `2:codex`, `3:deepcode`), real pane/process status,
+explicit restart, `remain-on-exit`, and persistent VM logs under
+`~/.local/state/a0/logs`.
+
+Install the stable `ai.sh` command into the caller PATH:
+
+```bash
+bash tools/install_ai.sh
+```
+
+On Termux the installer symlinks the canonical source to `$PREFIX/bin/ai.sh`,
+which is already on PATH. Elsewhere it uses `~/.local/bin/ai.sh` and adds one
+idempotent login-shell PATH line only when required. No second launcher
+implementation is copied.
+
+Examples:
+
+```bash
+ai.sh
+ai.sh status
+ai.sh restart deepcode
+ai.sh logs deepcode
+ai.sh codex
+```
+
+Provider credentials remain the responsibility of the VM/provider CLIs.
+`ai.sh keys` only copies already-present VM login-environment values into the
+remote tmux environment so restarted CLIs can see them; it prints only
+`present`/`missing` and never stores or displays key values.
 
 ## Drift checker
 
@@ -146,8 +195,9 @@ secrets, `hmmm`, and no UCNS-A / edcmbone status leakage.
 ## CI
 
 `.github/workflows/ci.yml` runs the repo verification stack on pull requests and
-pushes to `main`: unit tests, skill drift, skill compliance, ratios strict gate,
-llms-build drift, RepoLOTO audit, and RepoLOTO checks.
+pushes to `main`: unit tests, gonol-authority gate, skill drift, skill
+compliance, ratios strict gate, llms-build drift, RepoLOTO audit, and RepoLOTO
+checks.
 
 `.github/workflows/consumer-drift.yml` runs `check_consumer_drift.py` against
 every consumer repo on a weekly schedule (and on demand) to detect vendored-copy
@@ -159,3 +209,6 @@ extra secret required.
 - `consumer-drift.yml` only *detects* drift; re-propagation still requires a
   human or agent to run `propagate_skills.py --apply`, review, commit, and open PRs
 - `char_compress_check.py` verifies preservation fixtures but is not yet a complete codec
+- third-party coding CLI command names and authentication methods can change;
+  `tools/ai.sh` exposes command overrides rather than pretending those interfaces
+  are permanent

@@ -10,9 +10,12 @@ class CharCompressAuthorityTests(unittest.TestCase):
         text = (ROOT / "char-compress/SKILL.md").read_text()
         compact = " ".join(text.split())
         self.assertIn("Optional local text-stack notation", text)
-        self.assertIn("not a UCNS construction law or a mandatory EDCM scale ladder", compact)
-        self.assertIn("EDCM owns text-domain gonol construction", text)
+        self.assertIn("not a UCNS construction law or a mandatory Stack language-construction ladder", compact)
+        self.assertIn("EDCM owns measurement/evaluation only", text)
+        self.assertIn("Active language-gonol construction", text)
+        self.assertIn("research workspace in `The-Interdependency/stack`", text)
         self.assertIn("no current UCNS mathematical derivation is claimed", compact)
+        self.assertNotIn("EDCM owns text-domain gonol construction", text)
         for false_claim in ("Punctuation is a stronger typed twist", "Its mathematics is the source of the compression algorithm"):
             self.assertNotIn(false_claim, compact)
 

@@ -9,7 +9,7 @@ from frontmatter import frontmatter_for
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "gonol-build" / "SKILL.md"
 ADAPTER = ROOT / "skills" / "gonol-build" / "SKILL.md"
-WITNESS = ROOT / "tools" / "check_edcm_boundary.py"
+WITNESS = ROOT / "tools" / "check_gonol_authority.sh"
 
 
 class GonolBuildSkillTest(unittest.TestCase):
@@ -21,68 +21,74 @@ class GonolBuildSkillTest(unittest.TestCase):
     def test_activation_contract_is_concrete(self) -> None:
         description = self.frontmatter["description"]
         for phrase in (
-            "character, word, definition, or recursive-relation gonols",
-            "UCNS owns geometry; EDCM owns text construction",
+            "UCNS gonol objects",
+            "Stack owns active construction research",
+            "EDCM owns measurement/evaluation only",
             "no universal adjacent-scale ladder is required",
             "Pronunciation is not required",
             "Do not load",
         ):
             self.assertIn(phrase, description)
 
-    def test_authority_split_is_minimal(self) -> None:
+    def test_authority_split_is_current(self) -> None:
         for phrase in (
-            "UCNS = geometry",
-            "EDCM = text-domain gonol construction",
+            "UCNS = gonol objects, constructors, and underlying geometry",
+            "Stack = active language-gonol construction research workspaces",
+            "EDCM = measurement and evaluation of constructed outputs",
             "skill-lib = construction/replay discipline",
-            "Do not move text semantics into UCNS",
-            "invent geometry in EDCM",
+        ):
+            self.assertIn(phrase, self.compact)
+        self.assertNotIn("EDCM = text-domain gonol construction", self.compact)
+        self.assertNotIn("EDCM owns the admissible scale options", self.compact)
+
+    def test_active_construction_resolves_stack_workspace(self) -> None:
+        self.assertIn("research/english-gonol/", self.text)
+        self.assertIn("research/python-gonol/", self.text)
+        self.assertIn("Do not start in EDCM", self.text)
+        self.assertIn("Historical EDCM constructor names", self.text)
+        self.assertNotIn("`edcm/gonol.py`", self.text)
+
+    def test_gonol_object_authority_remains_ucns(self) -> None:
+        for phrase in (
+            "Consume UCNS gonol constructors and geometry",
+            "Defining a competing gonol object",
+            "consume UCNS construction authority",
         ):
             self.assertIn(phrase, self.compact)
 
-    def test_scale_options_are_owned_by_edcm(self) -> None:
-        self.assertIn("`docs/GONOL_LANGUAGE_BOUNDARY.md`", self.text)
-        self.assertIn("`edcm/gonol.py`", self.text)
-        self.assertIn("not a mandatory ladder", self.compact)
-        self.assertIn("character-to-definition construction must not be rejected", self.compact)
-        self.assertNotIn("This order is load-bearing", self.compact)
-
-    def test_cross_source_witness_stays_out_of_propagated_skill(self) -> None:
-        self.assertTrue(WITNESS.is_file())
-        self.assertFalse((ROOT / "gonol-build" / "check_edcm_boundary.py").exists())
-        self.assertIn("`tools/check_edcm_boundary.py`", self.text)
-        self.assertIn("deliberately not vendored into UCNS", self.compact)
-
-    def test_closed_words_promote_atomically(self) -> None:
+    def test_closed_gonols_participate_atomically(self) -> None:
         for phrase in (
             "Any closed gonol is atomic at an admissible consuming scale",
-            "constituent identities, order, multiplicity, source positions, and provenance remain recoverable",
-            "Definition gonols use eligible closed participants",
-            "Recursive relations are constructed from already-closed gonols",
+            "constituent identities, order, multiplicity, source positions, relations, and provenance remain recoverable",
+            "Constitutive relationships belong inside the construction",
+            "Recursive relations consume already-closed gonols",
         ):
             self.assertIn(phrase, self.compact)
 
-    def test_no_undeclared_intermediate_stage(self) -> None:
-        self.assertIn(
-            "Do not invent participant eligibility or another required stage",
-            self.compact,
-        )
+    def test_no_undeclared_intermediate_or_substitute_representation(self) -> None:
+        for phrase in (
+            "Do not invent participant eligibility, a required intermediate stage",
+            "Do not normalize, deduplicate, infer relations",
+            "tokens, AST nodes, compiler objects, embeddings, hashes, or metadata",
+        ):
+            self.assertIn(phrase, self.compact)
 
     def test_pronunciation_is_inert_by_default(self) -> None:
         for phrase in (
-            "Pronunciation is not required for this construction",
+            "Pronunciation is not required by default",
             "must not alter gonol identity, closure, ordering, or relations",
-            "Source pronunciation data may remain source metadata",
-            "It is not a dependency of the current build",
+            "Source pronunciation data may remain evidence or metadata",
+            "only under an explicit source/admission contract",
         ):
             self.assertIn(phrase, self.compact)
 
-    def test_construction_invariant_preserves_identity_and_provenance(self) -> None:
+    def test_construction_invariant_preserves_identity_relation_and_provenance(self) -> None:
         for phrase in (
-            "ordered eligible gonols",
-            "authorized UCNS geometric relation/application",
+            "ordered eligible closed gonols",
+            "constitutive relation declared by the owning workspace",
+            "UCNS gonol construction / authorized geometric application",
             "deterministic identity + provenance receipt",
-            "Preserve exact source identity, occurrence order, multiplicity, and provenance",
-            "Do not normalize, deduplicate, infer relations",
+            "Preserve exact source identity, occurrence order, multiplicity, relation identity, and provenance",
         ):
             self.assertIn(phrase, self.compact)
 
@@ -90,7 +96,11 @@ class GonolBuildSkillTest(unittest.TestCase):
         self.assertIn("preserve that boundary as `hmmm`", self.text)
         self.assertIn("do not fill it with an invented rule", self.compact)
 
-    def test_completion_requires_full_scope_and_replay(self) -> None:
+    def test_local_authority_gate_is_named(self) -> None:
+        self.assertTrue(WITNESS.is_file())
+        self.assertIn("bash tools/check_gonol_authority.sh", self.text)
+
+    def test_completion_preserves_resource_and_replay_boundary(self) -> None:
         for phrase in (
             "Before launching a construction or replay run whose completion materially depends on scarce resources",
             "preflight the resources required to finish it",
@@ -103,49 +113,49 @@ class GonolBuildSkillTest(unittest.TestCase):
         ):
             self.assertIn(phrase, self.compact)
 
-    def test_workflow_preflights_before_compute_and_replays_conditionally(self) -> None:
+    def test_workflow_preflights_before_constructor_resolution_and_replays_conditionally(self) -> None:
         workflow = self.text.split("## Workflow", 1)[1].split("## Authority", 1)[0]
         for phrase in (
             "Before launching construction or replay whose completion materially depends on scarce resources",
             "preflight the resources required to finish the declared scope",
+            "Resolve the owning Stack workspace's declared source/admission profile",
             "Replay the complete declared scope only where replay is required by the governing protocol",
         ):
             self.assertIn(phrase, workflow)
         self.assertLess(
             workflow.index("Before launching construction or replay"),
-            workflow.index("Resolve the EDCM constructor's declared scale option set"),
-        )
-        self.assertNotIn(
-            "Preflight resources before a completion claim, then replay the complete declared scope",
-            workflow,
+            workflow.index("Resolve the owning Stack workspace's declared source/admission profile"),
         )
 
     def test_workflow_and_anti_patterns_are_named(self) -> None:
         self.assertIn("## Workflow", self.text)
         self.assertIn("## Anti-patterns", self.text)
-        self.assertIn("Resolve the current UCNS and EDCM authorities before building", self.compact)
-        self.assertIn("Moving text semantics into UCNS or inventing geometry in EDCM", self.compact)
+        self.assertIn("Resolve the exact UCNS authority and the exact owning Stack research workspace", self.compact)
+        self.assertIn("Assigning active gonol or language construction authority to EDCM", self.compact)
 
     def test_anti_patterns_preserve_explicit_contract_exceptions(self) -> None:
         anti_patterns = self.text.split("## Anti-patterns", 1)[1].split("## hmmm", 1)[0]
         self.assertIn(
-            "unless a later explicitly declared experiment makes phonology part of its construction",
+            "unless an explicit construction admits it",
             anti_patterns,
         )
         self.assertIn(
-            "unless the active contract explicitly authorizes it",
+            "unless explicitly authorized",
             anti_patterns,
         )
 
     def test_usage_guidance_repeats_operational_contract(self) -> None:
-        self.assertIn("For text construction, start in EDCM and consume current UCNS geometry", self.compact)
-        self.assertIn("When a gonol closes, use it atomically at any admissible consuming scale", self.compact)
-        self.assertIn("Ignore pronunciation unless a future explicit construction says otherwise", self.compact)
+        self.assertIn("start in the owning research workspace inside `The-Interdependency/stack`", self.compact)
+        self.assertIn("Do not start in EDCM", self.compact)
+        self.assertIn("When a gonol closes, use it atomically at an admissible consuming scale", self.compact)
+        self.assertIn("Ignore pronunciation unless an explicit construction says otherwise", self.compact)
 
     def test_codex_adapter_points_to_canonical_skill(self) -> None:
         text = ADAPTER.read_text(encoding="utf-8")
         self.assertIn("Generated by tools/build_codex_plugin_skills.py", text)
         self.assertIn("../../gonol-build/SKILL.md", text)
+        self.assertIn("EDCM owns measurement/evaluation only", text)
+        self.assertNotIn("EDCM owns text construction", text)
 
 
 if __name__ == "__main__":
