@@ -11,7 +11,7 @@ AI-assistant guidance for `The-Interdependency/skill-lib`.
 - Entry points: `README.md`, `AGENTS.md`, `skills.json`, `ORG_DISTRIBUTION.md`, `llms.txt`, each `<skill>/SKILL.md`.
 - CI workflows: `.github/workflows/hygiene.yml` guards against tracked Python bytecode, `.github/workflows/ci.yml` runs the editorial/helper verification stack, and `.github/workflows/consumer-drift.yml` is a scheduled/dispatch detector that runs `tools/check_consumer_drift.py` against each consumer repo (the consumer repos are public, so it uses the default `GITHUB_TOKEN`).
 - Validation here is editorial plus pure-stdlib helper scripts in `tools/`, `ratios/`, `llms/`, and the RepoLOTO check module.
-- `tools/ai.sh` is the canonical VM coding-agent tmux launcher; `tools/install_ai.sh` installs the stable `~/.local/bin/ai` PATH wrapper.
+- `tools/ai.sh` is the canonical Termux-side SSH/tmux launcher for the `a0` VM; `tools/install_ai.sh` installs `ai.sh` into the caller PATH (Termux `$PREFIX/bin`, otherwise `~/.local/bin`).
 - The `llms/` package exists only to expose the stdlib `python -m llms.build` runner for `llms-build`.
 
 ## Layout
@@ -191,6 +191,7 @@ blocks first; do not hand-edit `llms.txt` as independent doctrine.
 
 ```bash
 python -m unittest discover -s tests
+bash tools/check_gonol_authority.sh
 python tools/check_skill_lib_drift.py --warnings-fail
 python tools/check_skill_compliance.py --warnings-fail
 python ratios/ratios_check.py --strict
@@ -212,8 +213,10 @@ There is a small stdlib Python editorial test suite. There is still no `package.
   skills.json semantics, per-skill spec coverage, SKILL.md frontmatter, README
   index coverage, collection-point schema/generator/visualizer coverage, universal parser
   behavior, llms-build behavior, and parser ratio bookends.
+- `tools/ai.sh` is the canonical Termux-side controller for the remote `a0` tmux coding-agent session; `tools/install_ai.sh` installs `ai.sh` into caller PATH, preferring Termux `$PREFIX/bin`.
 - The parsers are reference implementations; the test suite covers core parser
   behavior and library integration, not every consuming-runner contract.
+- `check_gonol_authority.sh` fails closed when active skill-lib surfaces restore EDCM construction ownership.
 - `check_skill_lib_drift.py` checks editorial agreement among skill directories, `skills.json`, `README.md`, `ORG_DISTRIBUTION.md`, `AGENTS.md`, `CLAUDE.md`, and generated `llms.txt`.
 - `check_skill_compliance.py` checks baseline `skill-build` invariants for each `SKILL.md`.
 - `ratios_check.py --strict` verifies opening/closing ratios seals for
@@ -252,7 +255,7 @@ There is a small stdlib Python editorial test suite. There is still no `package.
 9. Apply `char-compress` when compressing repo context: carry flesh, frozen bones, transforms, and hmmm; drop only safely regenerable scaffold.
 10. Treat `char-compress` as a skill-lib-owned compression procedure, but do not claim unearned theorem/status support or edcmbone metric status.
 11. Before promoting a word into canon, a theorem term, ontology primitive, schema field, encoding label, or cross-domain mapping, apply `domain-claims`: establish the domain-qualified sense and resolve collisions before attaching provenance; then apply `canon` to assess authority.
-12. Before constructing, reviewing, replaying, or extending UCNS gonols, apply `gonol-build`: resolve current UCNS geometry and EDCM admissible scale options, preserve closure and atomic participation, require declared occurrence-addressed function plans, and keep incomplete constructors visible as `hmmm`.
+12. Before constructing, reviewing, replaying, or extending language-gonol research, apply `gonol-build`: resolve current UCNS gonol-object/constructor/geometry authority and the exact owning Stack research workspace; EDCM is measurement/evaluation only. Preserve closure and atomic participation, require declared constitutive relations, and keep incomplete geometry visible as `hmmm`.
 13. Before selecting among UCNS options, apply `ucns-option-selection`: freeze the scoped decision boundary, enforce noncompensable eligibility and evidence gates, require explicit ratification, and preserve non-transfer, rollback, negative evidence, and `hmmm`.
 14. Before selecting and displaying an EPAC artifact, apply `epac-selection-display`: pin the provisional source, exact target, receipt, and available renderer; preserve status, nonclaims, sealed comparison, and `hmmm`; and keep WebMCP read-only.
 15. Before mutating `The-Interdependency/stack` structure, apply `stack-update` with `interdependent-work-graph`; update every affected authority/provenance projection, remove superseded claims, recompute the work-graph digest, and require the deterministic stack checker before merge.
