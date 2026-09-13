@@ -24,7 +24,7 @@ export default defineMsdmdCollection({
       id: "skill_lib_ai_launcher",
       fields: {
         source: "tools/ai.sh",
-        summary: "Canonical tmux launcher for coding-agent CLIs with pane health, restart, remain-on-exit, and persistent logs",
+        summary: "Canonical Termux-side SSH/tmux launcher for a0 VM coding-agent CLIs with pane health, explicit restart, key propagation, remain-on-exit, and persistent remote logs",
       },
     },
     {
@@ -33,7 +33,7 @@ export default defineMsdmdCollection({
       id: "skill_lib_ai_installer",
       fields: {
         source: "tools/install_ai.sh",
-        summary: "Installs the skill-lib ai launcher as ~/.local/bin/ai and ensures the user PATH contains ~/.local/bin",
+        summary: "Installs canonical ai.sh into caller PATH, preferring Termux $PREFIX/bin and otherwise ~/.local/bin",
       },
     },
     {
