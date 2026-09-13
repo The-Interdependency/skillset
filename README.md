@@ -135,13 +135,21 @@ python tools/build_codex_plugin_skills.py --check
 
 ## VM coding-agent launcher
 
-The canonical `ai` tmux launcher lives at `tools/ai.sh`. Install a stable command in the user PATH without copying the implementation:
+The canonical `ai.sh` launcher lives at `tools/ai.sh`. It runs on Termux,
+reaches the `a0` VM through the SSH host alias `a0`, and manages the remote
+`a0` tmux session. Install it into the caller PATH without copying the
+implementation:
 
 ```bash
 bash tools/install_ai.sh
 ```
 
-The installer creates `~/.local/bin/ai` pointing back to this checkout. `ai status` reports actual pane state, `ai restart deepcode` recreates/restarts DeepCode, and pane output persists under `~/.local/state/a0/logs`. Provider credentials remain owned by the provider CLIs/environment.
+On Termux the installer symlinks `ai.sh` into `$PREFIX/bin`; elsewhere it falls
+back to `~/.local/bin/ai.sh`. `ai.sh status` reports remote pane state,
+`ai.sh restart deepcode` repairs a missing/dead DeepCode window, and pane output
+persists on the VM under `~/.local/state/a0/logs`. `ai.sh keys` only propagates
+already-present VM login-environment keys into tmux and reports
+`present`/`missing`, never values.
 
 ## Maintenance tools
 
@@ -218,7 +226,8 @@ authoritative spec.
 Skills come in two kinds. Pick the right one for what you're adding.
 
 **Metadata-block skills** apply the `msdmd` convention to a new block
-name (`doc-build`, `cap-build`, `deps-build`, `owner-build`, `test-build`, `meta-module-build`, `risk-boundary-build`, `ratios`, `manifest`, `llms-build`, and `typed-meta-frontend` are the existing examples).
+name (`doc-build`, `cap-build`, `deps-build`, `owner-build`, `test-build`, `meta-module-build`, `risk-boundary-build`,
+`ratios`, `manifest`, `llms-build`, and `typed-meta-frontend` are the existing examples).
 To add one:
 
 1. Pick a `<BLOCK_NAME>` (e.g. `DOCS`, `CAPABILITIES`, `OWNERS`, `LLMS`).
