@@ -2,6 +2,27 @@
 # ratios: loc_comments=hmmm imports_exports=hmmm calls_definitions=hmmm
 set -euo pipefail
 
+# === MODULE_BUILD ===
+# id: gonol_authority_gate
+#   module_name: check_gonol_authority
+#   module_kind: checker
+#   summary: fail-closed local regression gate for UCNS/Stack/EDCM gonol authority across active skill-lib surfaces
+#   owner: skill-lib
+#   public_surface: bash tools/check_gonol_authority.sh
+#   internal_surface: active_files
+#   auth_boundary: none
+#   storage_boundary: read-only repository files
+#   network_boundary: none
+#   user_data_boundary: none
+#   admin_only: false
+#   tests: tests/test_gonol_build_skill.py, tests/test_char_compress_authority.py
+#   rollout: skill-lib CI gate
+#   rollback: revert only with an explicit authority change and matching doctrine update
+#   requires: gonol-build/SKILL.md, char-compress/SKILL.md, active skill-lib projections
+#   since: 2026-09-12
+#   unresolved: cross-repository authority truth is validated by each owning repository and Stack consistency gates
+# === END MODULE_BUILD ===
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
