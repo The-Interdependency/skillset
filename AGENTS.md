@@ -51,8 +51,8 @@ Read [`RESOURCE_RUN_INVARIANT.md`](RESOURCE_RUN_INVARIANT.md) before any compute
 <skill-name>/SKILL.md          # required: the skill itself
 <skill-name>/<helpers>...      # optional: parsers, executors, examples
 llms/                          # stdlib module for python -m llms.build
-tools/ai.sh                    # canonical VM coding-agent tmux launcher
-tools/install_ai.sh            # installs ~/.local/bin/ai PATH wrapper
+tools/ai.sh                    # canonical Termux -> a0 SSH/tmux coding-agent launcher
+tools/install_ai.sh            # installs ai.sh into caller PATH (Termux $PREFIX/bin first)
 ```
 
 Every skill is a directory at the repo root containing at least a
@@ -193,5 +193,5 @@ propagate from here.
 - `llms.txt` — generated LLM-facing root instructions.
 - Each `<skill>/SKILL.md` — the authoritative skill spec.
 - `llms/build.py` — reference runner for `llms-build`.
-- `tools/ai.sh` — canonical VM coding-agent launcher.
-- `tools/install_ai.sh` — PATH installer for `~/.local/bin/ai`.
+- `tools/ai.sh` — canonical Termux-side launcher for the remote `a0` tmux coding-agent session.
+- `tools/install_ai.sh` — installs `ai.sh` into caller PATH, preferring Termux `$PREFIX/bin`.
