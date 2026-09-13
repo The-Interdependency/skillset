@@ -3,8 +3,53 @@
 Small pure-stdlib helpers for maintaining this content repository.
 
 These tools do not introduce an external build system. They are local editorial
-checks, copy helpers, and generated-file drift gates. The small `llms/` package
-exists only to expose `python -m llms.build`.
+checks, copy helpers, launchers, installers, and generated-file drift gates. The
+small `llms/` package exists only to expose `python -m llms.build`.
+
+## Gonol authority gate
+
+```bash
+bash tools/check_gonol_authority.sh
+```
+
+Fails if active skill-lib doctrine drifts back to assigning gonol/text
+construction authority to EDCM. The active split is:
+
+```text
+UCNS  = gonol objects, constructors, geometry
+Stack = active language-gonol construction research
+EDCM  = measurement/evaluation only
+```
+
+## Canonical `ai` launcher
+
+`tools/ai.sh` is the canonical VM coding-agent launcher. It owns the `a0` tmux
+session layout, real pane/process status, restart, `remain-on-exit`, and
+persistent pane logs under `~/.local/state/a0/logs`.
+
+Install the stable `ai` command into the user PATH:
+
+```bash
+bash tools/install_ai.sh
+```
+
+The installer creates `~/.local/bin/ai` as a wrapper pointing back to the
+canonical `tools/ai.sh`; it does not copy a second implementation. If
+`~/.local/bin` is absent from PATH it adds one idempotent login-shell line to
+`~/.profile`.
+
+Examples:
+
+```bash
+ai
+ai status
+ai restart deepcode
+ai logs deepcode
+ai codex
+```
+
+Provider credentials remain the responsibility of the installed provider CLIs
+and VM environment. The launcher does not read, print, or become a key vault.
 
 ## Drift checker
 
@@ -146,8 +191,9 @@ secrets, `hmmm`, and no UCNS-A / edcmbone status leakage.
 ## CI
 
 `.github/workflows/ci.yml` runs the repo verification stack on pull requests and
-pushes to `main`: unit tests, skill drift, skill compliance, ratios strict gate,
-llms-build drift, RepoLOTO audit, and RepoLOTO checks.
+pushes to `main`: unit tests, gonol-authority gate, skill drift, skill
+compliance, ratios strict gate, llms-build drift, RepoLOTO audit, and RepoLOTO
+checks.
 
 `.github/workflows/consumer-drift.yml` runs `check_consumer_drift.py` against
 every consumer repo on a weekly schedule (and on demand) to detect vendored-copy
@@ -159,3 +205,6 @@ extra secret required.
 - `consumer-drift.yml` only *detects* drift; re-propagation still requires a
   human or agent to run `propagate_skills.py --apply`, review, commit, and open PRs
 - `char_compress_check.py` verifies preservation fixtures but is not yet a complete codec
+- third-party coding CLI command names and authentication methods can change;
+  `tools/ai.sh` exposes command overrides rather than pretending those interfaces
+  are permanent
