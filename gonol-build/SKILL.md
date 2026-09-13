@@ -77,7 +77,7 @@ If required UCNS geometry is unresolved, preserve that boundary as `hmmm`; do no
 
 ## Candidate boundary
 
-An unresolved constructor or geometry operation is permission to construct a named, bounded candidate only where the declared evidence permits it. It blocks promotion beyond the evidence, not honest experimentation.
+An unresolved constructor or geometry operation permits named, bounded candidate work where the declared evidence permits it. It does not block declared experimentation. It blocks promotion beyond the evidence.
 
 ## Completion and replay
 
