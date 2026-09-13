@@ -92,7 +92,7 @@ COMMENT_MARKERS: dict[str, str] = {
 }
 
 _DEFAULT_SKIP = (
-    "__pycache__", "node_modules", ".git", ".venv", "venv",
+    "__pycache__", "node_modules", ".git", ".agents", ".venv", "venv",
     "dist", "build", ".next", ".nuxt", "target", ".pytest_cache",
     ".mypy_cache", ".tox",
 )

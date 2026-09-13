@@ -151,6 +151,40 @@ Read-only: it never writes to the consumer repo. The scheduled workflow
 weekly (and on demand); the consumer repos are public, so it checks them out
 with the default `GITHUB_TOKEN` — no extra secret required.
 
+## Org recommendation aggregator
+
+Append repo-local `rec.md` recommendations into one org-level `rec.md` without
+rewriting repo-owned reports:
+
+```bash
+python3 tools/aggregate_org_rec.py --root .. --out ../rec.md
+python3 tools/aggregate_org_rec.py --root .. --out ../rec.md --append
+python3 tools/aggregate_org_rec.py --root .. --out ../rec.md --strict
+```
+
+The runner discovers immediate child git checkouts, extracts the latest
+`### Recommendations` section from each repo's `rec.md`, falls back to
+`### Remaining` for repair-pass records, carries `### hmmm` forward, and appends
+one timestamped aggregate section only when `--append` is supplied.
+Repository-local `rec.md` files remain source reports; the org aggregate is a
+derived index, not transferred canon.
+
+## Org ratio comparison report
+
+Collect shallow scalar/vector metrics across sibling repo checkouts and append
+oddities into `docs.report`:
+
+```bash
+python3 tools/org_ratio_compare.py --root ..
+python3 tools/org_ratio_compare.py --root .. --out ../docs.report --append
+python3 tools/org_ratio_compare.py --root .. --json
+```
+
+The runner skips vendored `.agents`, dependency folders, build outputs, and
+caches by default. Large text files are counted by bytes but not fully
+line-counted past the configured byte ceiling; the report carries those limits
+as `hmmm` instead of spending unbounded scan resources.
+
 ## llms-build runner
 
 Dry-run generated root instructions:

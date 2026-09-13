@@ -1,3 +1,4 @@
+# ratios: loc_comments=121:28 imports_exports=5:1 calls_definitions=23:4
 from __future__ import annotations
 
 import tempfile
@@ -128,6 +129,38 @@ class CollectTest(unittest.TestCase):
         self.assertIn("export default defineMsdmdCollection", rendered)
         self.assertIn('"repo": "sample"', rendered)
 
+    def test_collect_skips_vendored_agent_skills(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            product = root / "product.py"
+            vendored = root / ".agents" / "skills" / "msdmd" / "ignored.py"
+            vendored.parent.mkdir(parents=True)
+
+            product.write_text(
+                """# === DOCS ===
+# id: product_doc
+#   path: docs/product.md
+# === END DOCS ===
+""",
+                encoding="utf-8",
+            )
+            vendored.write_text(
+                """# === DOCS ===
+# id: vendored_doc
+#   path: docs/ignored.md
+# === END DOCS ===
+""",
+                encoding="utf-8",
+            )
+
+            collection = collect(root, "sample", block_names=("DOCS",))
+
+            self.assertEqual(
+                [("product.py", "product_doc")],
+                [(item["file"], item["id"]) for item in collection["declarations"]],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
+# ratios: loc_comments=121:28 imports_exports=5:1 calls_definitions=23:4

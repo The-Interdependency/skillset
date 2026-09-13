@@ -245,6 +245,28 @@ class UniversalParserTest(unittest.TestCase):
             self.assertEqual([(annotated, [{"id": "module_doc", "path": "docs/module.md"}])], annotated_files)
             self.assertEqual([gap], gap_files)
 
+    def test_walk_tree_skips_vendored_agent_skills(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            product = root / "product.py"
+            vendored = root / ".agents" / "skills" / "msdmd" / "ignored.py"
+            vendored.parent.mkdir(parents=True)
+
+            product.write_text("print('gap')\n", encoding="utf-8")
+            vendored.write_text(
+                """# === DOCS ===
+# id: vendored_doc
+#   path: docs/ignored.md
+# === END DOCS ===
+""",
+                encoding="utf-8",
+            )
+
+            annotated_files, gap_files = walk_tree(root, "DOCS")
+
+            self.assertEqual([], annotated_files)
+            self.assertEqual([product], gap_files)
+
     def test_parse_ratios_reads_single_line_declarations(self) -> None:
         text = (
             "# ratios: loc_comments=120:40 imports_exports=4:7 calls_definitions=50:10\n"

@@ -84,7 +84,7 @@ export const COMMENT_MARKERS: Record<string, string> = {
 };
 
 const DEFAULT_SKIP = new Set([
-  "__pycache__", "node_modules", ".git", ".venv", "venv",
+  "__pycache__", "node_modules", ".git", ".agents", ".venv", "venv",
   "dist", "build", ".next", ".nuxt", "target", ".pytest_cache",
   ".mypy_cache", ".tox",
 ]);
