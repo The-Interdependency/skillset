@@ -45,7 +45,7 @@ into [`llms.txt`](llms.txt) from self-declared `LLMS` blocks.
 | [`plain-lens/`](plain-lens/SKILL.md) | Plain-language, multi-lens companion views of dense canonical text — easier on-ramps that do not replace or talk down to the source. Domain/audience/role lens selectors, progressive-disclosure reading UX, static fallback for dynamic pages, and EDCM-style body-vs-footnote tension readings. Independent of msdmd. |
 | [`thought-lens/`](thought-lens/SKILL.md) | Translation compiler for raw, context-heavy thought. Recovers a claim kernel before rendering audience/surface-specific language, preserves claim force and operators, introduces coined terms only after their ordinary meaning lands, and back-checks for fidelity and remaining context debt. Independent of msdmd. |
 | [`meta/`](meta/SKILL.md) | Consultation router for current METAPAT. Retrieves the authoritative repository when a conceptual relation, distinction, boundary, transformation, scale, or cross-domain correspondence would constrain downstream work; carries no frozen METAPAT doctrine here. Independent of msdmd. |
-| [`gonol-build/`](gonol-build/SKILL.md) | UCNS geometry / EDCM text construction, closure, atomic participation at admissible scales, and scoped replay discipline. Resolves each owning contract; preserves exact source and occurrence identity; imposes no universal scale ladder. Independent of msdmd. |
+| [`gonol-build/`](gonol-build/SKILL.md) | UCNS gonol objects/constructors/geometry + Stack language-construction research discipline. Preserves closure, atomic participation, exact source/occurrence identity, provenance, honest `hmmm`, and scoped replay; EDCM is measurement/evaluation only. Independent of msdmd. |
 | [`ucns-option-selection/`](ucns-option-selection/SKILL.md) | Fail-closed UCNS option-selection rubric. Freezes scope, candidates, authority, gates, policies, and evidence boundaries; requires complete execution, falsification, replay, purpose-relative comparison, non-transfer, rollback, and explicit ratification; refuses compensating scores and universal promotion from local evidence. Independent of msdmd. |
 | [`epac-selection-display/`](epac-selection-display/SKILL.md) | Evidence-bound EPAC target selection and display. Resolves an exact provisional source, target, receipt, and available renderer; preserves standing, `selection_effect`, nonclaims, sealed-comparison boundaries, and `hmmm`; and keeps the WebMCP surface a read-only repository-and-skill handoff rather than an EPAC executor. Independent of msdmd. |
 | [`the-interdependency/`](the-interdependency/SKILL.md) | Workflow and protocol for code building, researching, GitHub maintenance and updates, EDCMBONE transcript assembly for analysis, and anything that touches The Interdependency organization or The Interdependent Way projects. Enforces structure preservation (neurodivergence-compatible), mandatory usage guidance in all artifacts, framework-aligned EDCMBONE analysis, and org-standard GitHub hygiene. Independent of msdmd. |
@@ -132,6 +132,16 @@ Codex adapters:
 python tools/build_codex_plugin_skills.py --apply
 python tools/build_codex_plugin_skills.py --check
 ```
+
+## VM coding-agent launcher
+
+The canonical `ai` tmux launcher lives at `tools/ai.sh`. Install a stable command in the user PATH without copying the implementation:
+
+```bash
+bash tools/install_ai.sh
+```
+
+The installer creates `~/.local/bin/ai` pointing back to this checkout. `ai status` reports actual pane state, `ai restart deepcode` recreates/restarts DeepCode, and pane output persists under `~/.local/state/a0/logs`. Provider credentials remain owned by the provider CLIs/environment.
 
 ## Maintenance tools
 
