@@ -10,12 +10,30 @@ export default defineMsdmdCollection({
   repo: "The-Interdependency/skill-lib",
   declarations: [
     {
-      file: "tools/check_edcm_boundary.py",
+      file: "tools/check_gonol_authority.sh",
       block: "MODULE_BUILD",
-      id: "gonol_edcm_scale_witness",
+      id: "gonol_authority_gate",
       fields: {
-        source: "tools/check_edcm_boundary.py",
-        summary: "Exact EDCM cross-source witness for non-adjacent scale construction, replay, and candidate non-transfer; not geometry or measurement proof",
+        source: "tools/check_gonol_authority.sh",
+        summary: "Guards active gonol authority: UCNS owns gonol objects/constructors/geometry, Stack owns active construction research, EDCM owns measurement/evaluation only",
+      },
+    },
+    {
+      file: "tools/ai.sh",
+      block: "MODULE_BUILD",
+      id: "skill_lib_ai_launcher",
+      fields: {
+        source: "tools/ai.sh",
+        summary: "Canonical tmux launcher for coding-agent CLIs with pane health, restart, remain-on-exit, and persistent logs",
+      },
+    },
+    {
+      file: "tools/install_ai.sh",
+      block: "MODULE_BUILD",
+      id: "skill_lib_ai_installer",
+      fields: {
+        source: "tools/install_ai.sh",
+        summary: "Installs the skill-lib ai launcher as ~/.local/bin/ai and ensures the user PATH contains ~/.local/bin",
       },
     },
     {
