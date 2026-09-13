@@ -51,6 +51,8 @@ Read [`RESOURCE_RUN_INVARIANT.md`](RESOURCE_RUN_INVARIANT.md) before any compute
 <skill-name>/SKILL.md          # required: the skill itself
 <skill-name>/<helpers>...      # optional: parsers, executors, examples
 llms/                          # stdlib module for python -m llms.build
+tools/ai.sh                    # canonical VM coding-agent tmux launcher
+tools/install_ai.sh            # installs ~/.local/bin/ai PATH wrapper
 ```
 
 Every skill is a directory at the repo root containing at least a
@@ -143,11 +145,13 @@ propagate from here.
 - If you are translating raw, recursive, fragmentary, coined, or private-language
   thought for strangers or a specific audience, load `thought-lens/SKILL.md`;
   freeze the claim kernel before changing vocabulary and back-check the result.
-- If you are constructing, reviewing, replaying, or continuing UCNS gonols,
-  including lexical floors, morphology, definitions, punctuation functions,
-  closure, atomic promotion, or recursive relations, load `gonol-build/SKILL.md`.
-  Resolve current UCNS geometry and EDCM text/scale authority first; never impose a universal adjacent-scale ladder or restore historical
-  `gonal-morphology` doctrine as current canon.
+- If you are constructing, reviewing, replaying, or continuing language-gonol
+  research, including lexical floors, morphology, definitions, punctuation
+  functions, closure, atomic promotion, or recursive relations, load
+  `gonol-build/SKILL.md`. Resolve current UCNS gonol-object/constructor/geometry
+  authority and the exact owning Stack research workspace first. EDCM is
+  measurement/evaluation only; never impose a universal adjacent-scale ladder
+  or restore historical `gonal-morphology` doctrine as current canon.
 - If you are comparing UCNS options, deciding whether evidence authorizes a
   winner, or issuing a scoped selection receipt, load
   `ucns-option-selection/SKILL.md`. Hard eligibility and evidence gates cannot
@@ -189,3 +193,5 @@ propagate from here.
 - `llms.txt` — generated LLM-facing root instructions.
 - Each `<skill>/SKILL.md` — the authoritative skill spec.
 - `llms/build.py` — reference runner for `llms-build`.
+- `tools/ai.sh` — canonical VM coding-agent launcher.
+- `tools/install_ai.sh` — PATH installer for `~/.local/bin/ai`.
