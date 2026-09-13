@@ -98,7 +98,7 @@ pipe_log() {
 sync_keys() {
   session_exists || return 0
   local script
-  script="for key in $KEY_VARS; do value=\"\${!key-}\"; if [[ -n \"\$value\" ]]; then tmux set-environment -t $(q "$SESSION") \"\$key\" \"\$value\"; fi; done"
+  script="for key in $KEY_VARS; do value=\"\$(printenv \"\$key\" 2>/dev/null || true)\"; if [[ -n \"\$value\" ]]; then tmux set-environment -t $(q "$SESSION") \"\$key\" \"\$value\"; fi; done"
   remote "$script"
 }
 
@@ -164,12 +164,15 @@ respawn() {
 }
 
 ensure_agent() {
-  local agent="$1" row index name command_line dead
+  local agent="$1" row index name command_line dead existed=0
   row="$(spec "$agent")"
   IFS='|' read -r index name command_line <<<"$row"
+  if window_exists "$name"; then
+    existed=1
+  fi
   ensure_window_shell "$index" "$name"
   dead="$(pane_dead "$name")"
-  if [[ "$agent" != shell && "$dead" == 1 ]]; then
+  if [[ "$existed" == 0 || "$dead" == 1 ]]; then
     respawn "$name" "$command_line"
   fi
 }
@@ -228,12 +231,15 @@ attach_window() {
 }
 
 open_agent() {
-  local agent="$1" row index name command_line dead
+  local agent="$1" row index name command_line dead existed=0
   row="$(spec "$agent")"
   IFS='|' read -r index name command_line <<<"$row"
+  if window_exists "$name"; then
+    existed=1
+  fi
   ensure_window_shell "$index" "$name"
   dead="$(pane_dead "$name")"
-  if [[ "$agent" != shell && "$dead" == 1 ]]; then
+  if [[ "$agent" != shell && ( "$existed" == 0 || "$dead" == 1 ) ]]; then
     respawn "$name" "$command_line"
   fi
   attach_window "$name"
