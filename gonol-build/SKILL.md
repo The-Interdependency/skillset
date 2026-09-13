@@ -107,7 +107,7 @@ Use `stack-update` when ownership, placement, authority, lifecycle, or promotion
 Run skill-lib's local authority regression gate after changing this boundary:
 
 ```bash
-python tools/check_gonol_authority.py
+bash tools/check_gonol_authority.sh
 ```
 
 When a gonol closes, use it atomically at an admissible consuming scale. Ignore pronunciation unless an explicit construction says otherwise.
