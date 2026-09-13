@@ -21,7 +21,7 @@ class AILauncherTests(unittest.TestCase):
             "#{pane_dead}",
             "#{pane_current_command}",
             "tmux respawn-pane -k",
-            '.local/state}/a0/logs',
+            'LOG_DIR="${A0_AI_LOG_DIR:-$STATE_HOME/a0/logs}"',
         ):
             self.assertIn(phrase, text)
 
