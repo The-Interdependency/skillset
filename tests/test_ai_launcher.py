@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
 import unittest
 
 
@@ -11,6 +12,10 @@ RATIO = "# ratios: loc_comments=hmmm imports_exports=hmmm calls_definitions=hmmm
 
 
 class AILauncherTests(unittest.TestCase):
+    def test_shell_syntax(self) -> None:
+        for script in (LAUNCHER, INSTALLER):
+            subprocess.run(["bash", "-n", str(script)], check=True)
+
     def test_launcher_keeps_ratio_seals_as_literal_boundaries(self) -> None:
         lines = LAUNCHER.read_text(encoding="utf-8").splitlines()
         self.assertEqual(lines[0], RATIO)
